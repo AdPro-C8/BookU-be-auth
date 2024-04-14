@@ -1,23 +1,24 @@
-# Use the official maven/Java 8 image to create a build artifact.
-# https://hub.docker.com/_/maven
-FROM maven:3.5-jdk-8-alpine as builder
+FROM docker.io/library/eclipse-temurin:21-jdk-alpine AS builder
 
-# Copy local code to the container image.
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+WORKDIR /src/bookubeauth
+COPY . .
+RUN chmod +x ./gradlew
+RUN ./gradlew clean bootjar
 
-# Build a release artifact.
-RUN mvn package -DskipTests
+FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
 
-# Use AdoptOpenJDK for base image.
-# It's important to use OpenJDK 8u191 or above that has container support enabled.
-# https://hub.docker.com/r/adoptopenjdk/openjdk8
-# https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
-FROM adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim
+ARG USER_NAME=bookubeauth
+ARG USER_UID=1000
+ARG USER_GID=${USER_UID}
 
-# Copy the jar to the production image from the builder stage.
-COPY --from=builder /app/target/bookubeauth-*.jar /bookubeauth.jar
+RUN addgroup -g ${USER_GID} ${USER_NAME} \
+&& adduser -h /opt/bookubeauth -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
 
-# Run the web service on container startup.
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/bookubeauth.jar"]
+USER ${USER_NAME}
+WORKDIR /opt/bookubeauth
+COPY --from=builder --chown=${USER_UID}:${USER_GID} /src/bookubeauth/build/libs/*.jar app.jar
+
+EXPOSE 8000
+
+ENTRYPOINT ["java"]
+CMD ["-jar", "app.jar"]
