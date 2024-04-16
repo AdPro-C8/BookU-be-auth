@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.bookubeauth.service;
+package id.ac.ui.cs.advprog.bookubeauth.services;
 
 import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import id.ac.ui.cs.advprog.bookubeauth.repositories.UserRepository;
