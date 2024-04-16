@@ -11,15 +11,26 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(nullable = false)
-  private Integer id;
+  @Getter
+  private Long id;
 
   @Column(unique = true)
+  @Getter
   @Setter
   private String email;
 
+  @Column(nullable = false)
+  @Getter
   @Setter
   private String username;
 
+  @Column(nullable = false)
+  @Getter
   @Setter
   private String password;
+
+  @Column(nullable = false)
+  @Getter
+  @Setter
+  private String role;
 }
