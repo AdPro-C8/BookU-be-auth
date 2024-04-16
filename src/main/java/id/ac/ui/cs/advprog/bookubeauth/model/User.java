@@ -33,4 +33,8 @@ public class User {
   @Getter
   @Setter
   private String role;
+
+  public static UserBuilder builder() {
+    return new UserBuilder();
+  }
 }
