@@ -1,6 +1,6 @@
 package id.ac.ui.cs.advprog.bookubeauth.service;
 
-import id.ac.ui.cs.advprog.bookubeauth.model.User;
+import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import id.ac.ui.cs.advprog.bookubeauth.repositories.UserRepository;
 
 import org.springframework.stereotype.Service;

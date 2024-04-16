@@ -1,6 +1,6 @@
-package id.ac.ui.cs.advprog.bookubeauth.model;
+package id.ac.ui.cs.advprog.bookubeauth.models;
 
-import id.ac.ui.cs.advprog.bookubeauth.model.User;
+import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import id.ac.ui.cs.advprog.bookubeauth.enums.UserRole;
 
 import java.lang.IllegalArgumentException;

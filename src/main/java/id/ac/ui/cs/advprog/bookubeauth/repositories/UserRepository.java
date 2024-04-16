@@ -1,6 +1,6 @@
 package id.ac.ui.cs.advprog.bookubeauth.repositories;
 
-import id.ac.ui.cs.advprog.bookubeauth.model.User;
+import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

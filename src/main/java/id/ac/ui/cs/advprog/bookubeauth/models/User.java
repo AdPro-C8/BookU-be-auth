@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.bookubeauth.model;
+package id.ac.ui.cs.advprog.bookubeauth.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
