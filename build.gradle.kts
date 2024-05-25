@@ -75,8 +75,8 @@ tasks.jacocoTestReport {
 
 sonar {
   properties {
-    property("sonar.projectKey", "CyberSleeper_eshop")
-    property("sonar.organization", "cybersleeper") 
+    property("sonar.projectKey", "AdPro-C8_BookU-be-auth")
+    property("sonar.organization", "adpro-c8") 
     property("sonar.host.url", "https://sonarcloud.io")
   }
 }
