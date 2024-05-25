@@ -78,5 +78,6 @@ sonar {
     property("sonar.projectKey", "AdPro-C8_BookU-be-auth")
     property("sonar.organization", "adpro-c8") 
     property("sonar.host.url", "https://sonarcloud.io")
+    property("sonar.gradle.skipCompile", "true")
   }
 }
