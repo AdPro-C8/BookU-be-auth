@@ -15,7 +15,7 @@ jobs:
           java-version: "21"
           cache: "gradle" 
       - name: Set gradlew as executable
-          run: chmod +x ./gradlew
+        run: chmod +x ./gradlew
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
