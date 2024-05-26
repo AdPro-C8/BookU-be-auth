@@ -32,7 +32,14 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: Build and analyze
+        uses: sonarsource/sonarcloud-github-action@6bbd64e0cb2194e04addb429d669a9ee873eeeef
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonar --info
+        with:
+            args:
+                -Dsonar.projectKey=AdPro-C8_BookU-be-auth
+                -Dsonar.organization=adpro-c8
+                -Dsonar.java.binaries=.
+                -Dsonar.sources=src/main/java
+                -Dsonar.tests=src/test/java
