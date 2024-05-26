@@ -1,22 +1,22 @@
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine AS builder
 
-WORKDIR /src/bookubeauth
+WORKDIR /src/eshop
 COPY . .
 RUN chmod +x ./gradlew
 RUN ./gradlew clean bootjar
 
 FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
 
-ARG USER_NAME=bookubeauth
+ARG USER_NAME=functionality
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 RUN addgroup -g ${USER_GID} ${USER_NAME} \
-&& adduser -h /opt/bookubeauth -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
+&& adduser -h /opt/eshop -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
 
 USER ${USER_NAME}
-WORKDIR /opt/bookubeauth
-COPY --from=builder --chown=${USER_UID}:${USER_GID} /src/bookubeauth/build/libs/*.jar app.jar
+WORKDIR /opt/eshop
+COPY --from=builder --chown=${USER_UID}:${USER_GID} /src/eshop/build/libs/*.jar app.jar
 
 EXPOSE 8000
 
