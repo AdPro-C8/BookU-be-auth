@@ -5,10 +5,10 @@ val junitJupiterVersion = "5.9.1"
 
 plugins {
 	java
-    jacoco
+	jacoco
 	id("org.springframework.boot") version "3.2.4"
 	id("io.spring.dependency-management") version "1.1.4"
-    id("org.sonarqube") version "4.4.1.3373"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -52,6 +52,14 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
+tasks.register<Test>("unitTest") {
+	description = "Run unit tests."
+	group = "verification"
+	filter {
+		excludeTestsMatching("*FunctionalTest")
+	}
+}
+
 tasks.withType<Test>().configureEach {
 	useJUnitPlatform()
 }
@@ -68,7 +76,7 @@ tasks.jacocoTestReport {
 	dependsOn(tasks.test)
 
 	reports {
-    html.required = true
-    xml.required = true
-  }
+		html.required = true
+		xml.required = true
+	}
 }
