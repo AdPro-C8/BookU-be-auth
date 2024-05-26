@@ -19,6 +19,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     @Getter
+    @Setter
     private UUID id;
 
     @Column(unique = true)
@@ -27,7 +28,6 @@ public class User implements UserDetails {
     private String email;
 
     @Column(nullable = false)
-    @Getter
     @Setter
     private String username;
 
