@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class JwtTest {
+public class ConfigsTest {
 
   @Test
   public void testJwtAuthenticationFilter() throws ServletException, IOException {
